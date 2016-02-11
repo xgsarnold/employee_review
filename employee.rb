@@ -7,6 +7,6 @@ class Employee
     @salary = salary
   end
 
-    
+
 
 end

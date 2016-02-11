@@ -21,7 +21,13 @@ class EmployeeReviewsTest < Minitest::Test
     assert sales.roster.include?(employee)
   end
 
-
+  def test_can_get_employee_name
+    sales = Department.new("Sales")
+    employee = Employee.new("Jean Luc Picard", "make.it.so@starfleet.org", "272-436-5649", 0)
+    sales.hire(employee)
+    assert sales.roster.include?(employee)
+    assert_equal "Jean Luc Picard", sales.roster[0].name
+  end
 
 
 
