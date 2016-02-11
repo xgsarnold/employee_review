@@ -9,6 +9,11 @@ class EmployeeReviewsTest < Minitest::Test
     d = Department.new("Research and Development")
   end
 
+  def test_can_create_new_employees
+    assert Employee
+    e = Employee.new("Augustine", "Hungry.Hippo@gmail.com", "919-477-8253", 77777)
+  end
+
 
 
 
