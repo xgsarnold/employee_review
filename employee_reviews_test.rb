@@ -4,6 +4,15 @@ require 'minitest/pride'
 require './department.rb'
 
 class EmployeeReviewsTest < Minitest::Test
+  def test_can_create_new_department
+    assert Department
+    d = Department.new("Research and Development")
+  end
+
+
+
+
+
 
 
 
