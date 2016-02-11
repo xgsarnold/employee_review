@@ -6,15 +6,20 @@ require './department.rb'
 class EmployeeReviewsTest < Minitest::Test
   def test_can_create_new_department
     assert Department
-    d = Department.new("Research and Development")
+    department = Department.new("Research and Development")
   end
 
   def test_can_create_new_employees
     assert Employee
-    e = Employee.new("Augustine", "Hungry.Hippo@gmail.com", "919-477-8253", 77777)
+    employee = Employee.new("Augustine", "hungry.hippo@gmail.com", "919-477-8253", 77777)
   end
 
-
+  def test_can_add_employ_to_department
+    sales = Department.new("Sales")
+    employee = Employee.new("Jean Luc Picard", "make.it.so@starfleet.org", "272-436-5649", 0)
+    sales.hire(employee)
+    assert sales.roster.include?(employee)
+  end
 
 
 
