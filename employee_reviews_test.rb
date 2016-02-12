@@ -15,26 +15,30 @@ class EmployeeReviewsTest < Minitest::Test
   end
 
   def test_can_add_employ_to_department
-    sales = Department.new("Sales")
+    r_and_d = Department.new("Research and Development")
     employee = Employee.new("Jean Luc Picard", "make.it.so@starfleet.org", "272-436-5649", 50000)
-    sales.hire(employee)
-    assert sales.roster.include?(employee)
+    r_and_d.hire(employee)
+    assert r_and_d.roster.include?(employee)
   end
 
   def test_can_get_employee_name
-    sales = Department.new("Sales")
+    r_and_d = Department.new("Research and Development")
     employee = Employee.new("Jean Luc Picard", "make.it.so@starfleet.org", "272-436-5649", 50000)
-    sales.hire(employee)
-    assert_equal "Jean Luc Picard", sales.roster[0].name
+    r_and_d.hire(employee)
+    assert_equal "Jean Luc Picard", r_and_d.roster[0].name
   end
 
   def test_can_get_employee_salary
-    sales = Department.new("Sales")
+    r_and_d = Department.new("Research and Development")
     employee = Employee.new("Jean Luc Picard", "make.it.so@starfleet.org", "272-436-5649", 50000)
-    sales.hire(employee)
-    assert_equal 50000, sales.roster[0].salary
+    r_and_d.hire(employee)
+    assert_equal 50000, r_and_d.roster[0].salary
   end
 
+  def test_can_get_department_name
+    r_and_d = Department.new("Research and Development")
+    assert_equal "Research and Development", r_and_d.name
+  end
 
 
 
