@@ -40,6 +40,17 @@ class EmployeeReviewsTest < Minitest::Test
     assert_equal "Research and Development", r_and_d.name
   end
 
+  def test_can_get_total_salary_of_department
+    r_and_d = Department.new("Research and Development")
+    employee_1 = Employee.new("Jean Luc Picard", "make.it.so@starfleet.org", "272-436-5649", 50000)
+    employee_2 = Employee.new("James T. Kirk", "beam.me.up@starfleet.org", "272-436-8912", 55000)
+    employee_3 = Employee.new("Schn Tgai Spock", "live.long@starfleet.org", "266-354-2833", 60000)
+    r_and_d.hire(employee_1)
+    r_and_d.hire(employee_2)
+    r_and_d.hire(employee_3)
+    assert_equal 165000, r_and_d.budget?
+  end
+
 
 
 end

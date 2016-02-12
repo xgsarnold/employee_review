@@ -11,5 +11,12 @@ class Department
     @roster << employee
   end
 
+  def budget?
+    sum = 0
+    @roster.each do |e|
+      sum += e.salary
+    end
+    sum
+  end
 
 end
