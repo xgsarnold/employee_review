@@ -51,6 +51,12 @@ class EmployeeReviewsTest < Minitest::Test
     assert_equal 165000, r_and_d.budget?
   end
 
+  def test_can_add_employee_review_text_to_employee
+    employee = Employee.new("Jean Luc Picard", "make.it.so@starfleet.org", "272-436-5649", 50000)
+    employee.review=("Potential conflict in loyalties. Speaks in a condescending manner of short sentences and commands. Nevertheless, he commands strong respect and gets the job done.")
+    assert_equal "Potential conflict in loyalties. Speaks in a condescending manner of short sentences and commands. Nevertheless, he commands strong respect and gets the job done.", employee.review
+  end
+
 
 
 end
