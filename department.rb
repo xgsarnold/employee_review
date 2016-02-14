@@ -36,10 +36,10 @@ class Department
   def level_up!(money)
     individual_money = money / @the_worthy.count
     @roster.each {|employee| employee.mo_money!(individual_money)}
-    end
   end
 
   def level_up_the_worthy!(money)
     individual_money = money / @the_worthy.count
     @the_worthy.each {|employee| employee.mo_money!(individual_money)}
   end
+end

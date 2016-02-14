@@ -152,10 +152,7 @@ class EmployeeReviewsTest < Minitest::Test
     assert_equal "Impressive", employee_4.rank
 
     ppc.thresh_with_block! {|employee| employee.salary < 80000.00 && employee.rank == "Impressive"}
-    # byebug
     ppc.level_up_the_worthy!(10000.00)
-
-
 
     assert_equal 280000.00, ppc.total_salary?
     assert_equal 60000.00, employee_1.salary
@@ -164,7 +161,6 @@ class EmployeeReviewsTest < Minitest::Test
     assert_equal 80000.00, employee_4.salary
 
   end
-
 end
 
 # ((asset))|((effective))|((impress))|((pleasure))
