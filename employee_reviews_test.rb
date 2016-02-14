@@ -11,28 +11,28 @@ class EmployeeReviewsTest < Minitest::Test
   end
 
   def test_can_create_new_employees
-    employee = Employee.new("Augustine", "hungry.hippo@gmail.com", "919-477-8253", 77777)
+    employee = Employee.new(name: "Augustine", email: "hungry.hippo@gmail.com", phone: "919-477-8253", salary: 77777.00)
     assert Employee
     assert_equal Employee, employee.class
   end
 
   def test_can_add_employ_to_department
     ppc = Department.new("Party Planning Committee")
-    employee = Employee.new("Jean Luc Picard", "make.it.so@starfleet.org", "272-436-5649", 50000.00)
+    employee = Employee.new(name: "Jean Luc Picard", email: "make.it.so@starfleet.org", phone: "272-436-5649", salary: 50000.00)
     ppc.hire(employee)
     assert ppc.roster.include?(employee)
   end
 
   def test_can_get_employee_name
     ppc = Department.new("Party Planning Committee")
-    employee = Employee.new("Jean Luc Picard", "make.it.so@starfleet.org", "272-436-5649", 50000.00)
+    employee = Employee.new(name: "Jean Luc Picard", email: "make.it.so@starfleet.org", phone: "272-436-5649", salary: 50000.00)
     ppc.hire(employee)
     assert_equal "Jean Luc Picard", ppc.roster[0].name
   end
 
   def test_can_get_employee_salary
     ppc = Department.new("Party Planning Committee")
-    employee = Employee.new("Jean Luc Picard", "make.it.so@starfleet.org", "272-436-5649", 50000.00)
+    employee = Employee.new(name: "Jean Luc Picard", email: "make.it.so@starfleet.org", phone: "272-436-5649", salary: 50000.00)
     ppc.hire(employee)
     assert_equal 50000.00, ppc.roster[0].salary
   end
@@ -44,9 +44,9 @@ class EmployeeReviewsTest < Minitest::Test
 
   def test_can_get_total_salary_of_department
     ppc = Department.new("Party Planning Committee")
-    employee_1 = Employee.new("Jean Luc Picard", "make.it.so@starfleet.org", "272-436-5649", 50000.00)
-    employee_2 = Employee.new("James T. Kirk", "beam.me.up@starfleet.org", "272-436-8912", 55000.00)
-    employee_3 = Employee.new("Schn Tgai Spock", "live.long@starfleet.org", "266-354-2833", 60000.00)
+    employee_1 = Employee.new(name: "Jean Luc Picard", email: "make.it.so@starfleet.org", phone: "272-436-5649", salary: 50000.00)
+    employee_2 = Employee.new(name: "James T. Kirk", email: "beam.me.up@starfleet.org", phone: "272-436-8912", salary: 55000.00)
+    employee_3 = Employee.new(name: "Schn Tgai Spock", email: "live.long@starfleet.org", phone: "266-354-2833", salary: 60000.00)
     ppc.hire(employee_1)
     ppc.hire(employee_2)
     ppc.hire(employee_3)
@@ -54,16 +54,16 @@ class EmployeeReviewsTest < Minitest::Test
   end
 
   def test_can_add_employee_review_text_to_employee
-    employee = Employee.new("Schn Tgai Spock", "live.long@starfleet.org", "266-354-2833", 60000.00)
+    employee = Employee.new(name: "Schn Tgai Spock", email: "live.long@starfleet.org", phone: "266-354-2833", salary: 60000.00)
     employee.review=("Spock is a very positive person and encourages those around him, but he has not done well technically this year.  There are two areas in which Spock has room for improvement.  First, when communicating verbally (and sometimes in writing), he has a tendency to use more words than are required.  This conversational style does put people at ease, which is valuable, but it often makes the meaning difficult to isolate, and can cause confusion. Second, when discussing new requirements with project managers, less of the information is retained by Spock long-term than is expected.  This has a few negative consequences: 1) time is spent developing features that are not useful and need to be re-run, 2) bugs are introduced in the code and not caught because the tests lack the same information, and 3) clients are told that certain features are complete when they are inadequate.  This communication limitation could be the fault of project management, but given that other developers appear to retain more information, this is worth discussing further.")
     assert_equal "Spock is a very positive person and encourages those around him, but he has not done well technically this year.  There are two areas in which Spock has room for improvement.  First, when communicating verbally (and sometimes in writing), he has a tendency to use more words than are required.  This conversational style does put people at ease, which is valuable, but it often makes the meaning difficult to isolate, and can cause confusion. Second, when discussing new requirements with project managers, less of the information is retained by Spock long-term than is expected.  This has a few negative consequences: 1) time is spent developing features that are not useful and need to be re-run, 2) bugs are introduced in the code and not caught because the tests lack the same information, and 3) clients are told that certain features are complete when they are inadequate.  This communication limitation could be the fault of project management, but given that other developers appear to retain more information, this is worth discussing further.", employee.review
   end
 
   def test_can_mark_whether_employee_performance_is_satisfactory_or_not
-    employee_1 = Employee.new("Schn Tgai Spock", "it.is.complicated@starfleet.org", "266-354-2833", 60000.00)
-    employee_2 = Employee.new("Jean Luc Picard", "make.it.so@starfleet.org", "272-436-5649", 50000.00)
-    employee_3 = Employee.new("Benjamin Sisko", "space.baller@starfleet.org", "999-999-9999", 80000.00)
-    employee_4 = Employee.new("James T. Kirk", "beam.me.up@starfleet.org", "272-436-8912", 55000.00)
+    employee_1 = Employee.new(name: "Schn Tgai Spock", email: "it.is.complicated@starfleet.org", phone: "266-354-2833", salary: 60000.00)
+    employee_2 = Employee.new(name: "Jean Luc Picard", email: "make.it.so@starfleet.org", phone: "272-436-5649", salary: 50000.00)
+    employee_3 = Employee.new(name: "Benjamin Sisko", email: "space.baller@starfleet.org", phone: "999-999-9999", salary: 80000.00)
+    employee_4 = Employee.new(name: "James T. Kirk", email: "beam.me.up@starfleet.org", phone: "272-436-8912", salary: 55000.00)
 
     employee_1.review=("Spock is a very positive person and encourages those around him, but he has not done well technically this year.  There are two areas in which Spock has room for improvement.  First, when communicating verbally (and sometimes in writing), he has a tendency to use more words than are required.  This conversational style does put people at ease, which is valuable, but it often makes the meaning difficult to isolate, and can cause confusion. Second, when discussing new requirements with project managers, less of the information is retained by Spock long-term than is expected.  This has a few negative consequences: 1) time is spent developing features that are not useful and need to be re-run, 2) bugs are introduced in the code and not caught because the tests lack the same information, and 3) clients are told that certain features are complete when they are inadequate.  This communication limitation could be the fault of project management, but given that other developers appear to retain more information, this is worth discussing further.")
     employee_2.review=("Picard is a huge asset to SciMed and is a pleasure to work with.  He quickly knocks out tasks assigned to him, implements code that rarely needs to be revisited, and is always willing to help others despite his heavy workload.  When Picard leaves on vacation, everyone wishes he didn't have to go. Last year, the only concerns with Picard performance were around ownership.  In the past twelve months, he has successfully taken full ownership of both Acme and Bricks, Inc.  Aside from some false starts with estimates on Acme, clients are happy with his work and responsiveness, which is everything that his managers could ask for.")
@@ -85,7 +85,7 @@ class EmployeeReviewsTest < Minitest::Test
   end
 
   def test_can_give_raise_to_employee
-    employee_2 = Employee.new("Jean Luc Picard", "make.it.so@starfleet.org", "272-436-5649", 50000.00)
+    employee_2 = Employee.new(name: "Jean Luc Picard", email: "make.it.so@starfleet.org", phone: "272-436-5649", salary: 50000.00)
     employee_2.review=("Picard is a huge asset to SciMed and is a pleasure to work with.  He quickly knocks out tasks assigned to him, implements code that rarely needs to be revisited, and is always willing to help others despite his heavy workload.  When Picard leaves on vacation, everyone wishes he didn't have to go. Last year, the only concerns with Picard performance were around ownership.  In the past twelve months, he has successfully taken full ownership of both Acme and Bricks, Inc.  Aside from some false starts with estimates on Acme, clients are happy with his work and responsiveness, which is everything that his managers could ask for.")
     employee_2.rank=("Impressive")
     assert_equal "Impressive", employee_2.rank
@@ -95,10 +95,10 @@ class EmployeeReviewsTest < Minitest::Test
 
   def test_can_give_raise_to_department
     ppc = Department.new("Party Planning Committee")
-    employee_1 = Employee.new("Schn Tgai Spock", "it.is.complicated@starfleet.org", "266-354-2833", 60000.00)
-    employee_2 = Employee.new("Jean Luc Picard", "make.it.so@starfleet.org", "272-436-5649", 50000.00)
-    employee_3 = Employee.new("Benjamin Sisko", "space.baller@starfleet.org", "999-999-9999", 80000.00)
-    employee_4 = Employee.new("James T. Kirk", "beam.me.up@starfleet.org", "272-436-8912", 55000.00)
+    employee_1 = Employee.new(name: "Schn Tgai Spock", email: "it.is.complicated@starfleet.org", phone: "266-354-2833", salary: 60000.00)
+    employee_2 = Employee.new(name: "Jean Luc Picard", email: "make.it.so@starfleet.org", phone: "272-436-5649", salary: 50000.00)
+    employee_3 = Employee.new(name: "Benjamin Sisko", email: "space.baller@starfleet.org", phone: "999-999-9999", salary: 80000.00)
+    employee_4 = Employee.new(name: "James T. Kirk", email: "beam.me.up@starfleet.org", phone: "272-436-8912", salary: 55000.00)
 
     # employee_1.review=("Spock is a very positive person and encourages those around him, but he has not done well technically this year.  There are two areas in which Spock has room for improvement.  First, when communicating verbally (and sometimes in writing), he has a tendency to use more words than are required.  This conversational style does put people at ease, which is valuable, but it often makes the meaning difficult to isolate, and can cause confusion. Second, when discussing new requirements with project managers, less of the information is retained by Spock long-term than is expected.  This has a few negative consequences: 1) time is spent developing features that are not useful and need to be re-run, 2) bugs are introduced in the code and not caught because the tests lack the same information, and 3) clients are told that certain features are complete when they are inadequate.  This communication limitation could be the fault of project management, but given that other developers appear to retain more information, this is worth discussing further.")
     # employee_2.review=("Picard is a huge asset to SciMed and is a pleasure to work with.  He quickly knocks out tasks assigned to him, implements code that rarely needs to be revisited, and is always willing to help others despite his heavy workload.  When Picard leaves on vacation, everyone wishes he didn't have to go. Last year, the only concerns with Picard performance were around ownership.  In the past twelve months, he has successfully taken full ownership of both Acme and Bricks, Inc.  Aside from some false starts with estimates on Acme, clients are happy with his work and responsiveness, which is everything that his managers could ask for.")
