@@ -161,6 +161,29 @@ class EmployeeReviewsTest < Minitest::Test
     assert_equal 80000.00, employee_4.salary
 
   end
+
+  def test_can_use_regex_to_determine_rank
+    ppc = Department.new("Party Planning Committee")
+    employee_1 = Employee.new(name: "Schn Tgai Spock", email: "it.is.complicated@starfleet.org", phone: "266-354-2833", salary: 60000.00)
+    employee_2 = Employee.new(name: "Jean Luc Picard", email: "make.it.so@starfleet.org", phone: "272-436-5649", salary: 50000.00)
+    employee_3 = Employee.new(name: "Benjamin Sisko", email: "space.baller@starfleet.org", phone: "999-999-9999", salary: 80000.00)
+    employee_4 = Employee.new(name: "James T. Kirk", email: "beam.me.up@starfleet.org", phone: "272-436-8912", salary: 80000.00)
+
+    employee_1.review=("Spock is easily distracted. He has a tendenacy to get emotional in confrontations and disagreements. He has technical abilities that would assist him in his work if he weren't so lazy. His poor work ethic leads him to failure in his tasks. His superiors have concern and frequently addressed these problems and given him repeated warnings. Unfortunately, he appears to lack any respect for authority. It is suggested that Spock be demoted or relocated to Starfleet to go through initial training once more.")
+    employee_2.review=("Picard is one of the greatest captains Starfleet has ever seen. He demonstrates a strong and impressive ability to lead and inspire his subordinates. He is also patient with those who continue to learn the particulars of their duties. Picard surprises Starfleet with his ability to accomplish the most difficult tasks. Starfleet should watch Picard carefully and use his talent well. When the time comes, Starfleet should consider a promotion for Picard.")
+    employee_3.review=("Sisko's relocation to Deep Space 9 was filled with hope, but also concern. In the past, Sisko demonstrated a strong capacity to lead others during his former command, but due to unfortunate circumstances Sisko found it difficult to continue to perform his duties as expected. Since his relocation, Sisko has failed to lead and govern in his new post as expected. Starfleet should continue to investigate the emotional state of Sisko and keep a close eye on his performance. His current state seems to distract him and cause problems. It may be necessary to demote in order to help him get better.")
+    employee_4.review=("Kirk is unconventional, but he inspires. He returns impresive results. Our only worry in regard to his results thus far is his apparent struggle to form appropriate relationships with clients. Kirk demonstrates a strong ability to lead others and help them to accomplish their potential. It is our recommendation to seek the eventual promotion of Kirk among the Starfleet ranks to utilize his talent, particularly in the teaching of others.")
+
+    employee_1.rank!
+    employee_2.rank!
+    employee_3.rank!
+    employee_4.rank!
+
+    assert_equal false,  employee_1.rank
+    assert_equal true, employee_2.rank
+    assert_equal false, employee_3.rank
+    assert_equal true, employee_4.rank
+  end
 end
 
 # ((asset))|((effective))|((impress))|((pleasure))
@@ -170,24 +193,36 @@ end
 
 =begin
 
-Once your baseline app is complete, modify your method
-on Departments which gives out raises. It should now
-take a block which will specify which employees are
-eligible for raises. Prior to this stage, you only
-allowed "satisfactory" employees to get raises, but
-now it can be more flexible.
+As part of this repository, you have a
+file called sample_reviews.txt. This file
+includes two negative employee reviews and
+two positive employee reviews. Your task
+is to write a method on the employee class
+which looks the employee review text
+stored in an employee instance variable
+(in Part 1) and return a true or false for
+whether this employee is performing
+satisfactorily. This also means that you
+will be removing the ability for users to
+manually mark whether an employee is
+performing satisfactorily. This will now
+be determined by code.
 
-For instance, if a department had $5,000 to spread
-out to its employees in raises, but you wanted to
-only give raises to people who only made less than
-$100,000, you could call a give_raises method like
-this:
+Regular expressions will be your friend
+here (and are required for this assignment,
+even if you could do it without them).
+Even so, this is not an easy problem. It
+is in a category of problems called
+"Natural Language Processing," and since
+you are attempting to take reviews and
+place them in one of two buckets
+(satisfactory or not), it is known as a
+"Classification" problem.
 
-department.give_raises(5000) do |employee|
-  employee.salary < 100000
-end
-At this stage, your code should:
+At this stage, your code should also:
 
-Have a method which takes a block and calls yield.
+Use at least one non-trivial regular
+expression (i.e. Don't just look for a
+literal string like /good/).
 
 =end
