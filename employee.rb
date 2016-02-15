@@ -11,8 +11,6 @@ class Employee
   end
 
   def rank!
-    # good_words = (/\binspire|patient|great|accomplish|talent|potential|promotion\b/i)
-    # bad_words = (/\bconcern|fail|leave|better|emotional|distracted|confrontation|disagreement|problem|lack|dmeote\b/i)
     if @review.match(/\binspire|great|accomplish|talent|promotion\b/i)
       @rank = true
     elsif @review.match(/\bconcern|fail|emotional|distract|problem|demote\b/i)
@@ -23,8 +21,6 @@ class Employee
   def mo_money!(money)
     if @rank == "Impressive"
       @salary = (@salary + money)
-    # else
-    #   puts "I am not impressed. No raise for you!"
     end
   end
 
